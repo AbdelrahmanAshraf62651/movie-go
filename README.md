@@ -24,7 +24,7 @@ The project is built with:
 
 ## 🚀 Live Demo  
 
-[👉 MovieGo on GitHub Pages](https://abdelrahmanashraf62651.github.io/movie-go/)  
+[👉 MovieGo on Vercel](https://movie-go-flame.vercel.app/)  
 
 ---
 
