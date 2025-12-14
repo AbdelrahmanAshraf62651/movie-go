@@ -1,8 +1,8 @@
-import Home from "./pages/home"
-import Favourite from "./pages/favourite"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
-import MovieDetail from "./pages/MovieDetail";
+import Home from "./pages/Home.jsx"
+import Favourite from "./pages/Favourite.jsx"
+import Navbar from "./components/Navbar.jsx"
+import Footer from "./components/Footer.jsx"
+import MovieDetail from "./pages/MovieDetail.jsx";
 import { Route, Routes } from "react-router-dom"
 function App() {
     return <div className="min-h-screen flex flex-col text-white bg-gray-900">
