@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import Carousel from "../components/Carousel";
 import {
@@ -18,6 +19,7 @@ import "../styles/fade-up.css";
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
     const [hasSearched, setHasSearched] = useState(false);
     const [searchResults, setSearchResults] = useState({ movies: [], tvs: [] });
     const [showAllSections, setShowAllSections] = useState(true);
@@ -46,18 +48,28 @@ function Home() {
         getUpcomingMovies().then(setUpcomingMovies);
     }, []);
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        if (!searchQuery) return;
+    useEffect(() => {
+        const search = searchParams.get("search");
+        if (search) {
+            performSearch(search);
+        } else {
+            setHasSearched(false);
+            setShowAllSections(true);
+            setSearchResults({ movies: [], tvs: [] });
+        }
+    }, [searchParams]);
 
+    const performSearch = async (query) => {
+        if (!query) return;
+        setSearchQuery(query);
         setHasSearched(true);
         setShowAllSections(false);
         setShowNoResults(false);
 
         try {
             const [movieResults, tvResults] = await Promise.all([
-                searchMovie(searchQuery),
-                searchTv(searchQuery),
+                searchMovie(query),
+                searchTv(query),
             ]);
             const filteredMovies = (movieResults || []).filter(
                 (m) => m.poster_path && m.poster_path.trim() !== ""
@@ -77,13 +89,23 @@ function Home() {
         }
     };
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearchParams({ search: searchQuery });
+    };
 
-    const handleGenreClick = async (genreId) => {
-        setSearchQuery("");
-        setSearchResults({ movies: [], tvs: [] });
-        setHasSearched(false);
+    useEffect(() => {
+        const genreId = searchParams.get("genre");
+        if (genreId) {
+            discoverByGenre(Number(genreId));
+        }
+    }, [searchParams]);
+
+    const discoverByGenre = async (genreId) => {
         setShowAllSections(false);
+        setHasSearched(false);
         setShowNoResults(false);
+        setSearchResults({ movies: [], tvs: [] });
 
         try {
             const [moviesByGenre, tvsByGenre] = await Promise.all([
@@ -92,9 +114,14 @@ function Home() {
             ]);
             setPopularMovies(moviesByGenre || []);
             setPopularTvs(tvsByGenre || []);
+            setShowAllSections(false);
         } catch (error) {
             console.error(error);
         }
+    };
+
+    const handleGenreClick = (genreId) => {
+        setSearchParams({ genre: String(genreId) });
     };
 
     return (
@@ -111,7 +138,7 @@ function Home() {
 
             <div className="flex flex-wrap justify-center gap-2 mb-8">
                 {Object.entries(GENRES).map(([id, name]) => (
-                    <button key={id} onClick={() => handleGenreClick(Number(id))} className="px-4 py-1 rounded-full bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer">
+                    <button key={id} onClick={() => handleGenreClick(id)} className="px-4 py-1 rounded-full bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer">
                         {name}
                     </button>
                 ))}

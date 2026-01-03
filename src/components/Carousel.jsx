@@ -10,6 +10,9 @@ const scroll = (ref, direction) => {
 };
 
 const Carousel = forwardRef(({ title, items }, refProp) => {
+    // Ensure items is an array before mapping
+    const validItems = Array.isArray(items) ? items : [];
+
     return (
         <div className="carousel mb-10">
             <h1 className="text-3xl my-5 font-bold">{title}</h1>
@@ -19,8 +22,8 @@ const Carousel = forwardRef(({ title, items }, refProp) => {
                 </button>
 
                 <div ref={refProp} className="flex gap-4 overflow-x-auto scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-                    {items.map((item) => (
-                        <div key={item.id} className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden">
+                    {validItems.map((item) => (
+                        <div key={item.id} className="shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden">
                             <MovieCard movie={item} />
                         </div>
                     ))}

@@ -102,7 +102,7 @@ function MovieDetail() {
                 </button>
             </div>
 
-            <div className="fade-up relative max-w-2xl flex flex-col flex-grow gap-3 justify-center">
+            <div className="fade-up relative max-w-2xl flex flex-col grow gap-3 justify-center">
                 <h1 className="text-4xl font-bold">{item.title || item.name}</h1>
                 <div className="flex gap-2 flex-wrap">
                     {item.genres?.map((genre) => (

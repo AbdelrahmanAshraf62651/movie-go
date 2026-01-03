@@ -13,12 +13,13 @@ The project is built with:
 
 - 🔥 Browse **popular** and **upcoming** movies.  
 - 🎭 Filter movies by **genre**.  
-- 🔍 **Search** for movies by title with fallback to popular if no results found.  
+- 🔍 **Search** for movies by title, with results reflected in the URL for easy sharing.  
 - 📖 View **detailed information** for each movie (poster, overview, rating, etc.).  
 - ❤️ Add/remove movies from your **Favorites** list (stored in local storage).  
+- 🔗 **Shareable links** that automatically filter by genre or search query on page load.
 - 🎡 **Carousel** sections with smooth horizontal scrolling and navigation buttons.  
 - 📱 Fully **responsive design** optimized for mobile, tablet, and desktop.  
-- 🚀 Deployed on **GitHub Pages**.  
+- 🚀 Deployed on **Vercel**.  
 
 ---
 
