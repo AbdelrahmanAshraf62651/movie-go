@@ -1,5 +1,5 @@
-let BASE_URL = "https://api.themoviedb.org/3";
-let key = "9cc95d21e1d086293a162d0a0d56999f";
+const key = import.meta.env.VITE_IMDB_KEY;
+const BASE_URL = "https://api.themoviedb.org/3";
 
 // Popular
 export async function getPopularMovie() {
