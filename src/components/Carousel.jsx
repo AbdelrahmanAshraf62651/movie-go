@@ -23,7 +23,7 @@ const Carousel = forwardRef(({ title, items }, refProp) => {
 
                 <div ref={refProp} className="flex gap-4 overflow-x-auto scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                     {validItems.map((item) => (
-                        <div key={item.id} className="shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden">
+                        <div key={item.id} className="shrink-0 w-37.5 sm:w-50 md:w-62.5 lg:w-75 overflow-hidden">
                             <MovieCard movie={item} />
                         </div>
                     ))}

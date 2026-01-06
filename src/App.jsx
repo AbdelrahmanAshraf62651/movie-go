@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom"
 function App() {
     return <div className="min-h-screen flex flex-col text-white bg-gray-900">
         <Navbar />
-        <main className="main-content flex-grow">
+        <main className="main-content grow">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/favorite" element={<Favourite />} />

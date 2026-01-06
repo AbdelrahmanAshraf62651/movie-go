@@ -81,6 +81,8 @@ function MovieDetail() {
         ? `https://image.tmdb.org/t/p/original${item.backdrop_path}`
         : `https://image.tmdb.org/t/p/original${item.poster_path}`;
 
+    let companies = item.production_companies || item.networks || [];
+
     return (
         <div className="flex flex-col justify-center relative min-h-[calc(100vh-112px)] text-white p-6 md:p-12">
             {bgLoading && (
@@ -92,7 +94,7 @@ function MovieDetail() {
                 src={bgUrl}
                 alt={item.title || item.name}
                 className="absolute inset-0 w-full h-full object-cover"
-                onLoad={() => setBgLoading(false)}
+                onLoad={() => { setBgLoading(false); console.log(item); }}
             />
             <div className="absolute inset-0 bg-black/70 z-0"></div>
 
@@ -104,6 +106,7 @@ function MovieDetail() {
 
             <div className="fade-up relative max-w-2xl flex flex-col grow gap-3 justify-center">
                 <h1 className="text-4xl font-bold">{item.title || item.name}</h1>
+                {item.tagline && <h3 className="text-xl">{item.tagline}</h3>}
                 <div className="flex gap-2 flex-wrap">
                     {item.genres?.map((genre) => (
                         <span key={genre.id} className="px-3 py-1 bg-red-500/20 text-red-300 text-sm rounded-full">
@@ -157,6 +160,24 @@ function MovieDetail() {
                         </div>
                     </div>
                 )}
+                {companies?.length > 0 && companies[0].logo_path && (
+                    <div className="mt-4">
+                        <div className="flex flex-row gap-4 items-center">
+                            {companies.map((company) => (
+                                <div key={company.id}>
+                                    {((company.logo_path)) && (
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
+                                            alt={company.name}
+                                            className="max-w-12 object-contain bg-accent rounded-md p-1"
+                                        />
+                                    )}
+                                </div>
+                            ))}</div>
+                    </div>
+                )
+
+                }
             </div>
 
             {selectedImage && (

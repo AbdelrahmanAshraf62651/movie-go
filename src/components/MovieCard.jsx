@@ -47,10 +47,10 @@ function MovieCard({ movie }) {
         <Link
             to={`/${mediaType}/${movie.id}`}
             aria-label={`View details for ${movie.title || movie.name}`}
-            className="movie-card flex-shrink-0 flex flex-col hover:shadow-lg hover:brightness-80 transition duration-300 text-white rounded-lg bg-gray-950 h-full"
+            className="movie-card shrink-0 flex flex-col hover:shadow-lg hover:brightness-80 transition duration-300 text-white rounded-lg bg-gray-950 h-full"
             style={{ flex: "0 0 20%", minWidth: "150px" }}
         >
-            <div className="relative w-full aspect-[2/3]">
+            <div className="relative w-full aspect-2/3">
                 {/* Skeleton while loading */}
                 {loading && !error && (
                     <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
@@ -61,9 +61,8 @@ function MovieCard({ movie }) {
                     <img
                         src={imgUrl}
                         alt={movie.title || movie.name}
-                        className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
-                            loading ? "opacity-0" : "opacity-100"
-                        }`}
+                        className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${loading ? "opacity-0" : "opacity-100"
+                            }`}
                         onLoad={() => setLoading(false)}
                         onError={() => {
                             setError(true);
@@ -84,9 +83,8 @@ function MovieCard({ movie }) {
                     <button onClick={handleFavClick}>
                         <FontAwesomeIcon
                             icon={isFav ? solidHeart : regularHeart}
-                            className={`w-5 h-5 ${
-                                isFav ? "text-red-500" : "text-white"
-                            } cursor-pointer hover:scale-120 transition duration-300`}
+                            className={`w-5 h-5 ${isFav ? "text-red-500" : "text-white"
+                                } cursor-pointer hover:scale-120 transition duration-300`}
                         />
                     </button>
                 </div>
