@@ -96,7 +96,7 @@ function MovieDetail() {
                 className="absolute inset-0 w-full h-full object-cover"
                 onLoad={() => { setBgLoading(false); console.log(item); }}
             />
-            <div className="absolute inset-0 bg-black/70 z-0"></div>
+            <div className="absolute inset-0 bg-black/60 z-0"></div>
 
             <div className="absolute top-5 right-5 bg-[#fff0] p-3 rounded-full hover:brightness-150 transition duration-100 z-10">
                 <button onClick={handleFavClick}>
@@ -122,9 +122,9 @@ function MovieDetail() {
                 {images?.backdrops?.length > 0 && (
                     <div className="mt-4">
                         <h2 className="text-xl font-bold mb-3">Images</h2>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 group">
                             {images?.backdrops?.slice(0, 4).map((img, idx) => (
-                                <div key={img.file_path} className="relative w-full h-24">
+                                <div key={img.file_path} className="relative w-full h-24 hover:cursor-pointer hover:brightness-110 group-hover:not-hover:brightness-50 transition duration-200">
                                     {!imgLoaded[idx] && <Skeleton />}
                                     <img
                                         src={`https://image.tmdb.org/t/p/w780${img.file_path}`}

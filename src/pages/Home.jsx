@@ -125,7 +125,7 @@ function Home() {
     };
 
     return (
-        <div className="home fade-up px-4 md:px-8 py-10 bg-gray-900 min-h-screen text-white">
+        <div className="home fade-up px-4 md:px-8 py-10 min-h-screen text-white">
             <form className="flex justify-center mb-6" onSubmit={handleSearch}>
                 <input
                     type="text"

@@ -47,7 +47,7 @@ function MovieCard({ movie }) {
         <Link
             to={`/${mediaType}/${movie.id}`}
             aria-label={`View details for ${movie.title || movie.name}`}
-            className="movie-card shrink-0 flex flex-col hover:shadow-lg hover:brightness-80 transition duration-300 text-white rounded-lg bg-gray-950 h-full"
+            className="movie-card shrink-0 flex flex-col hover:shadow-2xl hover:brightness-110 group-hover:not-hover:brightness-50 transition duration-300 text-white rounded-lg bg-gray-950 h-full"
             style={{ flex: "0 0 20%", minWidth: "150px" }}
         >
             <div className="relative w-full aspect-2/3">
